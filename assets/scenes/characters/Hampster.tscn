@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/SpriteFrames/Hampster.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://assets/scripts/hampster.gd" type="Script" id=3]
+[ext_resource path="res://assets/art/particles/FIRE.png" type="Texture" id=4]
+[ext_resource path="res://assets/scripts/playerInfo.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[node name="hamster" type="RigidBody2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Particles2D" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2( -10, 30 )
+amount = 6
+lifetime = 2.0
+lifetime_randomness = 0.36
+texture = ExtResource( 4 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 1 )
+scale_amount = 0.5
+scale_amount_random = 0.36
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 4.76837e-07 )
+scale = Vector2( 3.75, 3.75 )
+frames = ExtResource( 2 )
+animation = "isFlying"
+playing = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2 )
+shape = SubResource( 1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 2 )
+shape = SubResource( 1 )

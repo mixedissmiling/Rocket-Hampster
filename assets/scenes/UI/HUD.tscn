@@ -1,0 +1,128 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/fonts/doppio-one.regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/scenes/UI/HUD.gd" type="Script" id=2]
+[ext_resource path="res://assets/fontStuffs/fontGood.tres" type="DynamicFont" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 124, 2231 )
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer"]
+margin_right = 480.0
+margin_bottom = 48.0
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]#####[/center]"
+text = "#####"
+scroll_active = false
+
+[node name="You Died" type="Node" parent="CanvasLayer"]
+
+[node name="Label2" type="Label" parent="CanvasLayer/You Died"]
+margin_top = 68.0
+margin_right = 480.0
+margin_bottom = 167.0
+custom_fonts/font = ExtResource( 3 )
+text = "You Died!"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/You Died"]
+visible = false
+margin_top = 221.0
+margin_right = 480.0
+margin_bottom = 320.0
+custom_fonts/font = ExtResource( 3 )
+text = "Highscore: "
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/You Died"]
+margin_left = 170.0
+margin_top = 307.0
+margin_right = 319.0
+margin_bottom = 377.0
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.396078, 0.396078, 0.396078, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "Play Again?"
+flat = true
+
+[node name="Button2" type="Button" parent="CanvasLayer/You Died"]
+margin_left = 116.0
+margin_top = 368.0
+margin_right = 374.0
+margin_bottom = 438.0
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.396078, 0.396078, 0.396078, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "Return to Main Menu"
+flat = true
+
+[node name="Button3" type="Button" parent="CanvasLayer/You Died"]
+margin_left = 207.0
+margin_top = 443.0
+margin_right = 269.0
+margin_bottom = 482.0
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.396078, 0.396078, 0.396078, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "Quit"
+flat = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/You Died"]
+margin_top = 247.0
+margin_right = 479.0
+margin_bottom = 323.0
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center][wave = 1 level = 10]Highscore[/wave][/center]"
+text = "Highscore"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/You Died"]
+margin_left = -1.0
+margin_top = 173.0
+margin_right = 478.0
+margin_bottom = 254.0
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center][wave = 3 level = 10]Best Score [/wave][/center]"
+text = "Best Score "
+
+[node name="deathZoneSide" type="StaticBody2D" parent="CanvasLayer"]
+position = Vector2( -6, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/deathZoneSide"]
+position = Vector2( -1336, -286 )
+shape = SubResource( 3 )
+
+[node name="deathZoneSide2" type="StaticBody2D" parent="CanvasLayer"]
+position = Vector2( -6, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/deathZoneSide2"]
+position = Vector2( 2737, -286 )
+shape = SubResource( 3 )
+
+[connection signal="button_down" from="CanvasLayer/You Died/Button" to="." method="_on_Button_button_down"]
+[connection signal="button_down" from="CanvasLayer/You Died/Button2" to="." method="_on_Button2_button_down"]
+[connection signal="button_down" from="CanvasLayer/You Died/Button3" to="." method="_on_Button3_button_down"]
