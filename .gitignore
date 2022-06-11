@@ -16,7 +16,7 @@ export_presets.cfg
 data_*/
 
 # Other
-.builds
+.builds/*
 .README.md
 .VERSION.md
 .LICENSE
